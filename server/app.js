@@ -8,6 +8,7 @@ const session = require('express-session');
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const routes = require('./routes');
+const pool = require('./db');
 require('dotenv').config();
 
 const app = express();
@@ -36,18 +37,11 @@ app.use(
   session({
     secret: process.env.sessionSecret,
     resave: true, 
-    saveUninitialized: true,
+    saveUninitialized: true
   })
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use((req, res, next) => {
-  res.locals.loggedIn = false
-  if (req.session.passport && typeof req.session.passport.user !== undefined) {
-    res.locals.loggedIn = true
-  };
-  next()
-})
 
 // Production
 if (!dev) {
@@ -74,7 +68,7 @@ app.get('/login', passport.authenticate('auth0', {
   redirectUri: process.env.callbackURL,
   responseType: 'code',
   audience: 'https://group-buy.auth0.com/userinfo',
-  scope: 'openid profile'
+  scope: 'openid profile email'
   }),
   (req, res) => {
     res.redirect('/');
@@ -92,8 +86,22 @@ app.get('/login', passport.authenticate('auth0', {
       res.redirect('/user');
     });
   
-  app.get('/user', (req, res, next) => {
-    res.json({user: req.user})
+  app.get('/user', (request, response, next) => {
+      const email = request.user._json.email
+      pool.query(
+        `INSERT INTO users(email)
+        VALUES($1)
+        ON CONFLICT
+        DO NOTHING
+        RETURNING email;
+        `,
+         [email],
+         (err, res) => {
+           if (err) next(err);
+
+           response.redirect(`api/user/${email}`);
+         }
+        );
   });
 
 module.exports = app;

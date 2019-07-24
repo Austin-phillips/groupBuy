@@ -1,9 +1,19 @@
 const { Router } = require('express');
+const pool = require('../db');
 
 const router = Router();
 
-router.get('/', (req, res, next) => {
-  res.json({data: "Hello GroupBuy"});
+router.get('/:email', (request, response, next) => {
+  const {email} = request.params;
+  pool.query(
+    `SELECT * FROM users WHERE email = $1`,
+    [email],
+    (err, res) => {
+      if (err) next(err);
+
+      response.json(res.rows);
+    }
+  )
 });
 
 module.exports = router;

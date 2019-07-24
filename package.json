@@ -25,6 +25,7 @@
     "eject": "react-scripts eject",
     "server": "nodemon server/bin/www",
     "client": "npm run start",
+    "configure": "./server/bin/configuredb.sh",
     "production": "npm run build && NODE_ENV=production server/bin/www"
   },
   "eslintConfig": {
