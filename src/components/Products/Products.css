@@ -1,0 +1,14 @@
+#productBox{
+  border: 2px solid black;
+  text-align: center;
+  margin: 50px 150px 50px 150px;
+}
+
+#companyContainer{
+  text-align: center;
+}
+
+span{
+  font-size: 20px;
+  color: green;
+}
