@@ -35,22 +35,3 @@ router.get('/profile/:email', (request, response, next) => {
 })
 
 module.exports = router;
-
-
-// app.get('/user', (request, response, next) => {
-//   const email = request.user._json.email
-//   pool.query(
-//     `INSERT INTO users(email)
-//         VALUES($1)
-//         ON CONFLICT
-//         DO NOTHING
-//         RETURNING email;
-//         `,
-//     [email],
-//     (err, res) => {
-//       if (err) next(err);
-
-//       response.redirect(`api/user/${email}`);
-//     }
-//   );
-// });

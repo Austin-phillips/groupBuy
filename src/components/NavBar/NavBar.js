@@ -18,13 +18,13 @@ class NavBar extends Component {
   rightNavs = () => {
     if (!this.props.user.id) {
       return(
-        <button onClick={() => this.handleLogin()}>Login</button>
+        <button id='navBarButton' className='rightAlign' onClick={() => this.handleLogin()}>Login</button>
       )
     } else {
       return(
         <span>
-          <Link to='/profile'><button>Profile</button></Link>
-          <button onClick={() => this.handleLogout()}>Log out</button>
+          <Link to='/profile'><button id='navBarButton' className='rightAlign'>My Account</button></Link>
+          <button id='navBarButton' className='rightAlign' onClick={() => this.handleLogout()}>Log out</button>
         </span>
       )
     }
@@ -32,13 +32,14 @@ class NavBar extends Component {
 
   render() {
     return(
-      <div id='navBarContainer'>
-        <div id='innerNavBar'>
-          <Link to='/'><button>Home</button></Link>
-          <Link to='/products'><button>Products</button></Link>
-          <Link to='/companies'><button>Companies</button></Link>
-          {this.rightNavs()}
+      <div>
+        <div id='navBarContainer'>
+          <div id='innerNavBar'>
+            <Link to='/'><button id='navBarButton' className='leftAlign'>Home</button></Link>
+            {this.rightNavs()}
+          </div>
         </div>
+        <div id='navBarContainer'> <span id='groupBuy'>GroupBuy</span></div>
       </div>
     )
   }

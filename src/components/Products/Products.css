@@ -1,7 +1,27 @@
 #productBox{
   border: 2px solid black;
+  width: 20%;
   text-align: center;
-  margin: 50px 150px 50px 150px;
+  margin: 50px 100px 50px 100px;
+  display: inline-block;
+}
+
+#profileBox{
+  border: 2px solid black;
+  width: 80%;
+  text-align: center;
+  margin: 100px auto;
+}
+
+#orderContainer{
+  text-align: center;
+}
+
+#productImage{
+  width: 80%;
+  margin: 10px auto;
+  height: 100px;
+  border: 2px solid black;
 }
 
 #companyContainer{
@@ -10,5 +30,26 @@
 
 span{
   font-size: 20px;
-  color: green;
+  color: rgb(122, 4, 4);
+}
+
+#buyButton{
+  margin: 10px;
+  width: 35%;
+  font-size: 20px
+}
+
+#navBarButton{
+  width: 150px;
+  background-color: grey;
+  font-size: 18px
+}
+
+#groupBuy{
+  font-size: 50px;
+  color: black;
+}
+
+#category{
+  color: black;
 }

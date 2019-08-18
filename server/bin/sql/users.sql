@@ -12,10 +12,9 @@ CREATE TABLE users(
   card         VARCHAR(250),
   admin        BOOLEAN DEFAULT false,
   company      BOOLEAN,
-  "companyId"  INT,
   complete     BOOLEAN DEFAULT false
 );
 
-INSERT INTO users(first, last, phone, email, "addressOne", city, state, zip, card, company, "companyId", complete)
+INSERT INTO users(first, last, phone, email, "addressOne", city, state, zip, card, company, complete)
 VALUES
-('Austin', 'Phillips', '8019799538', 'phillips.austin51@gmail.com', '1485 E Hidden Valley Drive', 'Sandy', 'Utah', '84020', 'lajsdfasdfu0sdf9u90sdfasd0f9h', true, 13, true);
+('Austin', 'Phillips', '8019799538', 'phillips.austin51@gmail.com', '1485 E Hidden Valley Drive', 'Sandy', 'Utah', '84020', 'lajsdfasdfu0sdf9u90sdfasd0f9h', true, true);

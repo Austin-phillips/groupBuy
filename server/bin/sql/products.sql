@@ -4,16 +4,24 @@ CREATE TABLE products(
   description    VARCHAR(200),
   link           VARCHAR(200),
   price          INT,
-  "personLimit"          INT,
+  "personLimit"  INT,
   timer          VARCHAR(50),
+  count          INT,
   category       VARCHAR(50),
-  "companyId"    INT,
   sold           BOOLEAN DEFAULT false
 );
 
-INSERT INTO products(name, link, price, "personLimit", timer, category, "companyId", sold)
+INSERT INTO products(name, link, price, "personLimit", timer, count, category, sold)
 VALUES
-('watch', 'https://watches.com', 200, 10, '5 days', 'electronics', 2, true),
-('purse', 'https://purses.com', 350, 20, '5 days', 'accessories', 4, false),
-('baseball bat', 'https://baseball.com', 100, 15, '4 days', 'sports', 3, false),
-('Owlet Sock', 'https://owlet.com', 300, 10, '3 days', 'electronics', 1, true);
+('watch', 'https://watches.com', 200, 10, '5 days', 10, 'electronics', true),
+('purse', 'https://purses.com', 350, 20, '5 days', 3, 'accessories', false),
+('baseball bat', 'https://baseball.com', 100, 15, '4 days', 1, 'sports', false),
+('Owlet Sock', 'https://owlet.com', 300, 10, '3 days', 0, 'electronics', true),
+('watch', 'https://watches.com', 200, 10, '5 days', 2, 'electronics', true),
+('purse', 'https://purses.com', 350, 20, '5 days', 3, 'accessories', false),
+('baseball bat', 'https://baseball.com', 100, 15, '4 days', 1, 'sports', false),
+('Owlet Sock', 'https://owlet.com', 300, 10, '3 days', 0, 'electronics', true),
+('watch', 'https://watches.com', 200, 10, '5 days', 2, 'electronics', true),
+('purse', 'https://purses.com', 350, 20, '5 days', 3, 'accessories', false),
+('baseball bat', 'https://baseball.com', 100, 15, '4 days', 1, 'sports', false),
+('Owlet Sock', 'https://owlet.com', 300, 10, '3 days', 0, 'electronics', true);

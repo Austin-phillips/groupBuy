@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route, withRouter, HashRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import Callback from '../Callback';
 import auth0Client from '../Auth';
 import Home from './Home/Home';
@@ -7,6 +7,7 @@ import NavBar from './NavBar/NavBar';
 import Products from './Products/Products';
 import Profile from './Profile/Profile';
 import Companies from './Companies/Companies';
+import FetchUser from './FetchUser';
 
 class App extends Component {
   constructor(props) {
@@ -33,17 +34,19 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar />
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/products' component={Products} />
-          <Route exact path='/profile' component={Profile} />
-          <Route exact path='/companies' component={Companies} />
-          <Route exact path='/callback' component={Callback} />
-          {/* <SecuredRoute path='/new-question'
-              component={NewQuestion}
-              checkingSession={this.state.checkingSession} /> */}
-        </Switch>
+        {/* <FetchUser> */}
+          <NavBar />
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/products' component={Products} />
+            <Route exact path='/profile' component={Profile} />
+            <Route exact path='/companies' component={Companies} />
+            <Route exact path='/callback' component={Callback} />
+            {/* <SecuredRoute path='/new-question'
+                component={NewQuestion}
+                checkingSession={this.state.checkingSession} /> */}
+          </Switch>
+        {/* </FetchUser> */}
       </div>
     );
   }
