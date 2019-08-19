@@ -7,11 +7,13 @@ class FetchUser extends Component{
   state = { loaded: false };
 
   componentWillMount() {
-    const { dispatch } = this.props;
-    if (auth0Client.isAuthenticated() === true) {
-      const email = auth0Client.profile().email
-      dispatch(login(email, this.loaded()))
-    } else this.loaded()
+    if (auth0Client.isAuthenticated()) {
+      console.log("true")
+      this.loaded()
+    } else {
+      console.log("false")
+      this.loaded()
+    }
   }
 
   componentWillReceiveProps() {

@@ -2,37 +2,60 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getProducts, buyProduct, addToUser, getUserOrders } from '../../actions/products';
 
-
 class Home extends Component {
+  state = {
+    userProductId: []
+  }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { dispatch, user } = this.props;
     if (!user.id) {
-      dispatch(getProducts())
+      await dispatch(getProducts())
     } else {
-      dispatch(getProducts())
-      dispatch(getUserOrders(user.id))
+      await dispatch(getProducts())
+      await dispatch(getUserOrders(user.id))
+      await this.makeIdArr()
     }
   }
 
-  handleBuy = (count, pid) => {
+  makeIdArr = () => {
+    const {userProducts} = this.props;
+    return userProducts.map(up => {
+      return this.setState({
+        userProductId: this.state.userProductId.concat(up.productId)
+      })
+    })
+  }
+
+  handleBuy = (pid) => {
     const uid = this.props.user.id
-    const newCount = count + 1;
     const {dispatch} = this.props;
-    dispatch(buyProduct(newCount, pid))
+    dispatch(buyProduct(pid))
     dispatch(addToUser(uid, pid))
+    this.forceUpdate()
+  }
+
+  handleBuyAgain = (pid) => {
+    const uid = this.props.user.id
+    const { dispatch } = this.props;
+    dispatch(addToUser(uid, pid))
+    this.forceUpdate()
   }
 
   displayButtons = (count, limit, pid) => {
-    const { user, userProducts } = this.props;
+    const { user, userProducts} = this.props;
+    const { userProductId } = this.state;
     if (!user.id) {
       return(
         count >= limit ? <button id='buyButton'>Sold Out</button> : <button id='buyButton'>Log In To Buy</button>
       )
     } else {
-      return(
-        count >= limit ? <button id='buyButton'>Sold Out</button> : <button id='buyButton' onClick={() => this.handleBuy(count, pid)}>Buy</button>
-      )
+      if (userProductId.includes(pid)) {
+        return count >= limit ? <button id='buyButton'>Sold Out</button> : <button id='buyButton' onClick={() => this.handleBuyAgain(pid)}>Buy Again</button>
+      } else {
+        return count >= limit ? <button id='buyButton'>Sold Out</button> : <button id='buyButton' onClick={() => this.handleBuy(pid)}>Buy</button>
+
+      }
     }
   }
 

@@ -18,10 +18,9 @@ router.get('/', (request, response, next) => {
 // PURCHASE PRODUCT
 router.put('/buy/:id', (request, response, next) => {
   const { id } = request.params;
-  const count = request.body.count;
   pool.query(
-    `UPDATE products SET count=($1) WHERE id=($2) RETURNING *`,
-    [count, id],
+    `UPDATE products SET count = count + 1 WHERE id=($1) RETURNING *`,
+    [id],
     (err, res) => {
       if (err) next(err)
 
@@ -60,6 +59,22 @@ router.get('/:uid', (request, response, next) => {
        response.json(res.rows)
      }
   )
-})
+});
+
+// GET ALL IDS FOR USERS ORDERS
+router.get('/orderid/:uid', (request, response, next) => {
+  const { uid } = request.params
+  pool.query(
+    `SELECT "productId" FROM product_user_relation pur
+     INNER JOIN products p ON p.id = pur."productId"
+     WHERE pur."userId" = $1`,
+    [uid],
+    (err, res) => {
+      if (err) next(err)
+
+      response.json(res.rows)
+    }
+  )
+});
 
 module.exports = router;

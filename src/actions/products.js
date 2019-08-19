@@ -12,9 +12,9 @@ export const getProducts = () => {
   }
 }
 
-export const buyProduct = (count, pid) => {
+export const buyProduct = (pid) => {
   return (dispatch) => {
-    axios.put(`/api/products/buy/${pid}`, {count})
+    axios.put(`/api/products/buy/${pid}`)
     .then( res => {
       dispatch({ type: 'UPDATE_PRODUCT', product: res.data, id: pid})
     })
@@ -47,3 +47,15 @@ export const getUserOrders = (uid) => {
     })
   }
 }
+
+// export const getUserOrder = (uid) => {
+//   return (dispatch) => {
+//     axios.get(`/api/products/${uid}`)
+//     .then( res => {
+//       dispatch({ type: 'GET_USERPRODUCTS', userProducts: res.data})
+//     })
+//     .catch( err => {
+//       console.log(err)
+//     })
+//   }
+// }

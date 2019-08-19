@@ -34,7 +34,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        {/* <FetchUser> */}
+        <FetchUser>
           <NavBar />
           <Switch>
             <Route exact path='/' component={Home} />
@@ -46,7 +46,7 @@ class App extends Component {
                 component={NewQuestion}
                 checkingSession={this.state.checkingSession} /> */}
           </Switch>
-        {/* </FetchUser> */}
+        </FetchUser>
       </div>
     );
   }

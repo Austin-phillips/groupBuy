@@ -1,4 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/index';
 
@@ -7,22 +9,12 @@ const enhancers = compose(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
-const store = createStore(rootReducer, {}, enhancers);
-
-if (module.hot) {
-  module.hot.accept('./reducers/', () => {
-    const nextRootReducer = require('./reducers/index').default;
-    store.replaceReducer(nextRootReducer);
-  });
+const persistConfig = {
+  key: 'root',
+  storage,
 }
 
-export default store;
-// const persistConfig = {
-//   key: 'root',
-//   storage,
-// }
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-// const persistedReducer = persistReducer(persistConfig, rootReducer)
-
-// export const store = createStore(persistedReducer, enhancers)
-// export const persistor = persistStore(store)
+export const store = createStore(persistedReducer, enhancers)
+export const persistor = persistStore(store)
