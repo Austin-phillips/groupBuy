@@ -10,7 +10,19 @@ export const getProducts = () => {
         console.log(err)
       })
   }
-}
+};
+
+export const getSingleProduct = (id) => {
+  return (dispatch) => {
+    axios.get(`/api/products/${id}`)
+    .then(res => {
+      dispatch({ type: 'GET_PRODUCTS', products: res.data})
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+};
 
 export const buyProduct = (pid) => {
   return (dispatch) => {
@@ -26,7 +38,7 @@ export const buyProduct = (pid) => {
 
 export const addToUser = (uid, pid) => {
   return (dispatch) => {
-    axios.post('/api/products/relation', {uid, pid})
+    axios.post('/api/product/user', {uid, pid})
     .then( res => {
       dispatch({ type: 'ADD_USERPRODUCT', userProduct: res.data})
     })
@@ -38,7 +50,7 @@ export const addToUser = (uid, pid) => {
 
 export const getUserOrders = (uid) => {
   return (dispatch) => {
-    axios.get(`/api/products/${uid}`)
+    axios.get(`/api/product/user/${uid}`)
     .then( res => {
       dispatch({ type: 'GET_USERPRODUCTS', userProducts: res.data})
     })
@@ -48,14 +60,14 @@ export const getUserOrders = (uid) => {
   }
 }
 
-// export const getUserOrder = (uid) => {
-//   return (dispatch) => {
-//     axios.get(`/api/products/${uid}`)
-//     .then( res => {
-//       dispatch({ type: 'GET_USERPRODUCTS', userProducts: res.data})
-//     })
-//     .catch( err => {
-//       console.log(err)
-//     })
-//   }
-// }
+export const getUserOrderId = (uid) => {
+  return (dispatch) => {
+    axios.get(`/api/product/user/order/${uid}`)
+    .then( res => {
+      dispatch({ type: 'GET_USERPRODUCTS', userProducts: res.data})
+    })
+    .catch( err => {
+      console.log(err)
+    })
+  }
+}
