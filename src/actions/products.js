@@ -12,11 +12,12 @@ export const getProducts = () => {
   }
 };
 
-export const getSingleProduct = (id) => {
+export const getSingleProduct = (id, callback) => {
   return (dispatch) => {
     axios.get(`/api/products/${id}`)
     .then(res => {
       dispatch({ type: 'GET_PRODUCTS', products: res.data})
+      return callback
     })
     .catch(err => {
       console.log(err)
@@ -41,6 +42,7 @@ export const addToUser = (uid, pid) => {
     axios.post('/api/product/user', {uid, pid})
     .then( res => {
       dispatch({ type: 'ADD_USERPRODUCT', userProduct: res.data})
+      window.location.replace('/profile')
     })
     .catch( err => {
       console.log(err)
@@ -60,11 +62,12 @@ export const getUserOrders = (uid) => {
   }
 }
 
-export const getUserOrderId = (uid) => {
+export const getUserOrderId = (uid, callback) => {
   return (dispatch) => {
     axios.get(`/api/product/user/order/${uid}`)
     .then( res => {
       dispatch({ type: 'GET_USERPRODUCTS', userProducts: res.data})
+      return callback
     })
     .catch( err => {
       console.log(err)
