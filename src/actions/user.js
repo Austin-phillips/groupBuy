@@ -1,5 +1,4 @@
 import axios from 'axios';
-import auth0Client from '../Auth';
 
 export const login = (email) => {
   return (dispatch) => {
@@ -16,6 +15,5 @@ export const login = (email) => {
 export const logout = () => {
   return (dispatch) => {
     dispatch({type: 'LOGOUT'});
-    auth0Client.signOut()
   }
 }

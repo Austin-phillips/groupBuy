@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "auth0-js": "^9.11.2",
+    "@auth0/auth0-spa-js": "^1.1.1",
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -36,7 +36,6 @@
     "configure": "./server/bin/configuredb.sh",
     "production": "npm run build && NODE_ENV=production server/bin/www"
   },
-  "proxy": "http://localhost:3000",
   "eslintConfig": {
     "extends": "react-app"
   },
