@@ -28,11 +28,6 @@
   text-align: center;
 }
 
-span{
-  font-size: 20px;
-  color: rgb(122, 4, 4);
-}
-
 #buyButton{
   margin: 10px;
   width: 35%;
@@ -52,4 +47,8 @@ span{
 
 #category{
   color: black;
+}
+
+#menuId{
+  background-color: rgb(38, 156, 38);
 }

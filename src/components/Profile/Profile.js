@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getUserOrders } from '../../actions/products';
 
-class Profile extends Component {
+function Profile(props) {
+  const { first, last, phone, email, addressOne, city, state, zip, card, company, companyId, admin } = props.user;
 
-  componentDidMount() {
-    const { dispatch, user } = this.props;
+  useEffect(() => {
+    const { dispatch, user } = props;
     if (!user.id) {
       return null
-    } else{
+    } else {
       dispatch(getUserOrders(user.id))
     }
-  }
+  }, [])
 
-  displayOrders = () => {
-    const {userProducts} = this.props;
+  const displayOrders = () => {
+    const {userProducts} = props;
     return userProducts.map(up => {
       return(
         <div id='productBox' key={up.purId}>
@@ -30,8 +31,6 @@ class Profile extends Component {
     })
   }
 
-  render() {
-    const { first, last, phone, email, addressOne, city, state, zip, card, company, companyId, admin } = this.props.user;
     return (
       <div>
         <div id='profileBox'>
@@ -50,12 +49,11 @@ class Profile extends Component {
         </div>
         <div id='orderContainer'>
           <h2>My Orders</h2>
-          {this.displayOrders()}
+          {displayOrders()}
         </div>
       </div>
     );
   }
-}
 
 const mapStateToProps = (state) => {
   return {

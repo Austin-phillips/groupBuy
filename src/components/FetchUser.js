@@ -4,14 +4,25 @@ import { useAuth0 } from "../react-auth0-wrapper";
 
 function FetchUser(props) {
   const { isAuthenticated, user } = useAuth0();
-  const dispatch = props.dispatch;
+  const { dispatch, fetchUser } = props;
 
-  if (isAuthenticated) {
-    dispatch(login(user.email))
-    return props.children;
+  if (!fetchUser.id) {
+    if (isAuthenticated) {
+      dispatch(login(user.email))
+      return null
+    }
+      return null
   }
-  dispatch(userLogout())
-  return props.children;
+    if (isAuthenticated) {
+      return null
+    }
+      dispatch(userLogout())
+      return null
+
 }
 
-export default connect()(FetchUser);
+const mapStateToProps = (state) => {
+  return { fetchUser: state.user }
+}
+
+export default connect(mapStateToProps)(FetchUser);

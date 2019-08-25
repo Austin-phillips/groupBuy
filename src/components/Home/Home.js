@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 import { getProducts } from '../../actions/products';
 import { Link, withRouter } from 'react-router-dom';
 import './Home.css';
 
-class Home extends Component {
+function Home(props) {
 
-  componentDidMount() {
-    const { dispatch } = this.props;
+  useEffect(() => {
+    function onLoad() {
+      const { dispatch } = props;
       dispatch(getProducts())
-  }
+    }
+    onLoad()
+  }, [])
 
-  displayProducts = () => {
-    const { products } = this.props;
+  const displayProducts = () => {
+    const { products } = props;
     return products.map(p => {
       return(
         <Link to={`/product/${p.id}`} key={p.id}>
@@ -29,7 +32,6 @@ class Home extends Component {
     })
   }
 
-  render() {
     return (
       <div id='companyContainer'>
         <hr/>
@@ -38,11 +40,10 @@ class Home extends Component {
           <span id='category'>Sports | </span>
           <span id='category'>Accessories</span>
         <hr/>
-        {this.displayProducts()}
+        {displayProducts()}
       </div>
     );
   }
-}
 
 const mapStateToProps = (state) => {
   return { products: state.products, user: state.user, userProducts: state.userProducts}

@@ -6,14 +6,15 @@ import './NavBar.css';
 
 
 function NavBar(props)  {
-  const { loginWithRedirect, logout } = useAuth0();
+  const {loginWithRedirect, logout} = useAuth0();
+  const {user} = props;
 
   const handleLogout = () => {
     logout()
   }
 
   const rightNavs = () => {
-    if (!props.user.id) {
+    if (!user.id) {
       return(
         <button id='navBarButton' className='rightAlign' onClick={() => loginWithRedirect()}>Login</button>
       )
@@ -21,6 +22,7 @@ function NavBar(props)  {
       return(
         <span>
           <Link to='/profile'><button id='navBarButton' className='rightAlign'>My Account</button></Link>
+          {user.company === true ? <Link to='/company'><button id='navBarButton' className='rightAlign'>Company Dashboard</button></Link> : null}
           <button id='navBarButton' className='rightAlign' onClick={() => handleLogout()}>Log out</button>
         </span>
       )
