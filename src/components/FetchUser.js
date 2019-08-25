@@ -1,32 +1,17 @@
-// import { Component } from 'react';
-// import { connect } from 'react-redux';
-// import { login } from '../actions/user'
+import { connect } from 'react-redux';
+import { login, userLogout } from '../actions/user'
+import { useAuth0 } from "../react-auth0-wrapper";
 
-// class FetchUser extends Component{
-//   state = { loaded: false };
+function FetchUser(props) {
+  const { isAuthenticated, user } = useAuth0();
+  const dispatch = props.dispatch;
 
-//   componentWillMount() {
-//     if (auth0Client.isAuthenticated()) {
-//       console.log("true")
-//       this.loaded()
-//     } else {
-//       console.log("false")
-//       this.loaded()
-//     }
-//   }
+  if (isAuthenticated) {
+    dispatch(login(user.email))
+    return props.children;
+  }
+  dispatch(userLogout())
+  return props.children;
+}
 
-//   componentWillReceiveProps() {
-//     if (!this.state.loaded) this.loaded();
-//   }
-
-//   loaded = () => {
-//     console.log(auth0Client.isAuthenticated())
-//     this.setState({ loaded: true });
-//   }
-
-//   render() {
-//     return this.state.loaded ? this.props.children : null;
-//   }
-// }
-
-// export default connect()(FetchUser)
+export default connect()(FetchUser);

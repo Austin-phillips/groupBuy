@@ -14,10 +14,10 @@ class Profile extends Component {
   }
 
   displayOrders = () => {
-    const {userProducts, user} = this.props;
+    const {userProducts} = this.props;
     return userProducts.map(up => {
       return(
-        <div id='productBox' key={up.id}>
+        <div id='productBox' key={up.purId}>
           <div id='productImage'>Images</div>
           <h3>Product Name: <span>{up.name}</span></h3>
           <h3>Product Description: <span>{up.description}</span></h3>
@@ -31,7 +31,7 @@ class Profile extends Component {
   }
 
   render() {
-    const { first, last, phone, email, addressOne, addressTwo, city, state, zip, card, company, companyId, admin } = this.props.user;
+    const { first, last, phone, email, addressOne, city, state, zip, card, company, companyId, admin } = this.props.user;
     return (
       <div>
         <div id='profileBox'>

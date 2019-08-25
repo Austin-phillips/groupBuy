@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getSingleProduct, buyProduct, addToUser, getUserOrderId } from '../../actions/products';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class SingleProduct extends Component {
   state = { productsLoaded: false, ordersLoaded: false }
@@ -51,7 +51,7 @@ class SingleProduct extends Component {
   }
 
   render() {
-    const { id, name, description, price, personLimit, timer, count, category, sold } = this.props.products[0];
+    const { name, description, price, personLimit, timer, count, category } = this.props.products[0];
     const {user} = this.props;
     const { productsLoaded, ordersLoaded } = this.state;
     if (!user.id) {

@@ -15,8 +15,8 @@ class Home extends Component {
     const { products } = this.props;
     return products.map(p => {
       return(
-        <Link to={`product/${p.id}`}>
-          <div id='productBox' key={p.id}>
+        <Link to={`/product/${p.id}`} key={p.id}>
+          <div id='productBox'>
             <div id='productImage'>Images</div>
             <h3>Product Name: <span>{p.name}</span></h3>
             <h3>Product Description: <span>{p.description}</span></h3>

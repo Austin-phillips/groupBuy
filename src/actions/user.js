@@ -12,7 +12,7 @@ export const login = (email) => {
   }
 }
 
-export const logout = () => {
+export const userLogout = () => {
   return (dispatch) => {
     dispatch({type: 'LOGOUT'});
   }

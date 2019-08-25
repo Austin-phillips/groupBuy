@@ -36,6 +36,7 @@
     "configure": "./server/bin/configuredb.sh",
     "production": "npm run build && NODE_ENV=production server/bin/www"
   },
+  "proxy": "http://localhost:3000",
   "eslintConfig": {
     "extends": "react-app"
   },
