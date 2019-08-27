@@ -81,7 +81,7 @@ function Menu(props) {
   return (
     <div id='menuContainer'>
       <Button id='menuButton' onClick={toggleDrawer('left', true)}><MenuIcon /></Button>
-      <Typography variant='h1' display='inline'>paq</Typography>
+      <Typography variant='h2' display='inline'>paq</Typography>
       {!props.user.id ? <Button id='loginButton' onClick={() => loginWithRedirect()}>Login</Button> : <Button id='loginButton' onClick={() => logout()}>Logout</Button>}
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
         {sideList('left')}
