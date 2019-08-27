@@ -20,7 +20,7 @@ function App() {
   return (
     <div>
       <FetchUser />
-        <Menu />
+        <NavBar />
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/company' component={Company} />

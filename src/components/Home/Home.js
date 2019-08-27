@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import Card from './Card';
 import { connect } from 'react-redux';
 import { getProducts } from '../../actions/products';
 import { Link, withRouter } from 'react-router-dom';
