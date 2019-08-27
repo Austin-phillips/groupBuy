@@ -40,7 +40,8 @@
     "server": "nodemon server/bin/www",
     "client": "npm run start",
     "configure": "./server/bin/configuredb.sh",
-    "production": "npm run build && NODE_ENV=production server/bin/www"
+    "production": "npm run build && NODE_ENV=production server/bin/www",
+    "heroku-postbuild": "npm run build"
   },
   "proxy": "http://localhost:3000",
   "eslintConfig": {
