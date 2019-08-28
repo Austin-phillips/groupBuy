@@ -14,6 +14,8 @@ import HomeIcon from '@material-ui/icons/Home';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import CategoriesIcon from '@material-ui/icons/Toc';
 import MenuIcon from '@material-ui/icons/Dehaze';
+import AccountIcon from '@material-ui/icons/AccountCircle';
+import CompanyIcon from '@material-ui/icons/DeveloperBoard';
 import { useAuth0 } from '../../react-auth0-wrapper';
 
 const useStyles = makeStyles({
@@ -48,10 +50,32 @@ function Menu(props) {
       <div>
         <Divider />
         <List>
+          <Link to='/profile' id='link'>
+            <ListItem button>
+              <ListItemIcon><AccountIcon /></ListItemIcon>
+              <ListItemText primary="Profile" />
+            </ListItem>
+          </Link>
           <ListItem button>
             <ListItemIcon><ShoppingCartIcon /></ListItemIcon>
             <ListItemText primary="Cart" />
           </ListItem>
+          {props.user.company ? 
+            <Link to='/company' id='link'>
+              <ListItem button>
+                <ListItemIcon><CompanyIcon /></ListItemIcon>
+                <ListItemText primary="Company Dashboard" />
+              </ListItem>
+            </Link> :
+            null
+          }
+          {props.user.admin ?
+            <ListItem button>
+              <ListItemIcon><CompanyIcon /></ListItemIcon>
+              <ListItemText primary="Admin Dashboard" />
+            </ListItem> :
+            null
+          }
         </List>
       </div>
     )
@@ -65,10 +89,12 @@ function Menu(props) {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
-        <ListItem button>
-          <ListItemIcon><HomeIcon/></ListItemIcon>
-          <ListItemText primary="Home"/>
-        </ListItem>
+        <Link to='/' id='link'>
+          <ListItem button>
+            <ListItemIcon><HomeIcon/></ListItemIcon>
+            <ListItemText primary="Home"/>
+          </ListItem>
+        </Link>
         <ListItem button>
           <ListItemIcon><CategoriesIcon /></ListItemIcon>
           <ListItemText primary="Categories"/>
@@ -81,7 +107,7 @@ function Menu(props) {
   return (
     <div id='menuContainer'>
       <Button id='menuButton' onClick={toggleDrawer('left', true)}><MenuIcon /></Button>
-      <Typography variant='h2' display='inline'>paq</Typography>
+      <Typography variant='h2' display='inline' id='menuHeader'>paq</Typography>
       {!props.user.id ? <Button id='loginButton' onClick={() => loginWithRedirect()}>Login</Button> : <Button id='loginButton' onClick={() => logout()}>Logout</Button>}
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
         {sideList('left')}

@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { useAuth0 } from '../../react-auth0-wrapper';
-import './NavBar.css';
-
 
 function NavBar(props)  {
   const {loginWithRedirect, logout} = useAuth0();

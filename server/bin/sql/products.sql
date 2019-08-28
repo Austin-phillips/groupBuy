@@ -2,26 +2,28 @@ CREATE TABLE products(
   id SERIAL      PRIMARY KEY,
   name           VARCHAR(50),
   description    VARCHAR(200),
-  link           VARCHAR(200),
   price          INT,
   "personLimit"  INT,
-  timer          VARCHAR(50),
+  timer          INT,
   count          INT,
   category       VARCHAR(50),
-  sold           BOOLEAN DEFAULT false
+  sold           BOOLEAN DEFAULT false,
+  "tierOne"      FLOAT DEFAULT .95,
+  "tierTwo"      FLOAT DEFAULT .90,
+  "tierThree"    FLOAT DEFAULT .85
 );
 
-INSERT INTO products(name, link, price, "personLimit", timer, count, category, sold)
+INSERT INTO products(name, price, "personLimit", timer, count, category, sold, "tierOne", "tierTwo", "tierThree")
 VALUES
-('watch', 'https://watches.com', 200, 10, '5 days', 10, 'electronics', true),
-('purse', 'https://purses.com', 350, 20, '5 days', 3, 'accessories', false),
-('baseball bat', 'https://baseball.com', 100, 15, '4 days', 14, 'sports', false),
-('Owlet Sock', 'https://owlet.com', 300, 10, '3 days', 0, 'electronics', true),
-('watch', 'https://watches.com', 200, 10, '5 days', 2, 'electronics', true),
-('purse', 'https://purses.com', 350, 20, '5 days', 3, 'accessories', false),
-('baseball bat', 'https://baseball.com', 100, 15, '4 days', 1, 'sports', false),
-('Owlet Sock', 'https://owlet.com', 300, 10, '3 days', 0, 'electronics', true),
-('watch', 'https://watches.com', 200, 10, '5 days', 2, 'electronics', true),
-('purse', 'https://purses.com', 350, 20, '5 days', 3, 'accessories', false),
-('baseball bat', 'https://baseball.com', 100, 15, '4 days', 1, 'sports', false),
-('Owlet Sock', 'https://owlet.com', 300, 10, '3 days', 0, 'electronics', true);
+('watch', 200, 10, 4, 10, 'electronics', true, .95, .90, .85),
+('purse', 350, 20, 2, 3, 'accessories', false, .95, .90, .85),
+('baseball bat', 100, 15, 5, 14, 'sports', false, .95, .90, .85),
+('Owlet Sock', 300, 10, 1, 0, 'electronics', true, .95, .90, .85),
+('watch', 200, 10, 4, 2, 'electronics', true, .95, .90, .85),
+('purse', 350, 20, 3, 3, 'accessories', false, .95, .90, .85),
+('baseball bat', 100, 15, 3, 1, 'sports', false, .95, .90, .85),
+('Owlet Sock', 300, 10, 5, 0, 'electronics', true, .95, .90, .85),
+('watch', 200, 10, 5, 2, 'electronics', true, .95, .90, .85),
+('purse', 350, 20, 4, 3, 'accessories', false, .95, .90, .85),
+('baseball bat', 100, 15, 2, 1, 'sports', false, .95, .90, .85),
+('Owlet Sock', 300, 10, 1, 0, 'electronics', true, .95, .90, .85);
