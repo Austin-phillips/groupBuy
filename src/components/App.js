@@ -1,9 +1,7 @@
 import React from "react";
-import NavBar from "./NavBar/NavBar";
 import Home from './Home/Home';
 import Profile from './Profile/Profile';
 import singleProduct from './Product/SingleProduct';
-import Typography from '@material-ui/core/Typography';
 import FetchUser from "./FetchUser";
 import Company from "./Company/Company";
 import { Route, Switch } from "react-router-dom";

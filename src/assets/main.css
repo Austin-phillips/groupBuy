@@ -41,10 +41,9 @@ body{
 
 /* Home Page */
 #card{
-  /* box-shadow: 2px 2px rgba(59, 59, 59, 0.788); */
   text-align: left;
   display: inline-block;
-  margin: 30px;
+  margin: 25px 75px 25px 75px;
   border: 1px black solid;
 }
 
@@ -55,4 +54,49 @@ body{
 #buyButton{
   color: black;
   background-color: rgba(25, 190, 25, 0.795);
+}
+
+#countdown{
+  background-color: rgba(0, 0, 0, 0.877);
+  font-size: 25px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 5px 0 5px 0;
+  color: white;
+}
+
+#progressBar{
+  height: 15px;
+  margin: 5px 0 5px 0;
+  border-radius: 10px;
+}
+
+#joinedContainer{
+  margin-top: 15px;
+}
+
+@media only screen and (max-width: 1000px) {
+  #card{
+    text-align: left;
+    display: inline-block;
+    margin: 25px 25px 25px 25px;
+    border: 1px black solid;
+  }
+}
+
+@media only screen and (max-width: 920px) {
+  #card{
+    text-align: left;
+    display: inline-block;
+    margin: 25px 25px 25px 25px;
+    border: 1px black solid;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #card{
+    text-align: left;
+    display: inline-block;
+    border: 1px black solid;
+  }
 }
