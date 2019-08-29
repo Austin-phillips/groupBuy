@@ -47,10 +47,6 @@ body{
   border: 1px black solid;
 }
 
-#homeContainer{
-  text-align: center;
-}
-
 #buyButton{
   color: black;
   background-color: rgba(25, 190, 25, 0.795);
