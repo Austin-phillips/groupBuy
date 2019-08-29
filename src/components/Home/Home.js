@@ -14,7 +14,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 
 const useStyles = makeStyles({
   card: {
-    width: 345,
+    width: 300,
   },
   media: {
     height: 180,

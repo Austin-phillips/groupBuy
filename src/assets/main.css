@@ -1,5 +1,6 @@
 body{
   background-color: rgba(128, 128, 128, 0.075);
+  width: 100%;
 }
 
 /* NavBar */
@@ -9,7 +10,7 @@ body{
 
 #loginButton{
   position: absolute;
-  right: 20px;
+  right: 25px;
   top: 25px;
 }
 
@@ -102,11 +103,13 @@ body{
 
   #loginButton{
     position: absolute;
+    right: 0px;
     top: 25px;
   }
 
   #menuButton{
     position: absolute;
+    left: 0px;
     top: 25px;
   }
 }
