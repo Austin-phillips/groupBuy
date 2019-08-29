@@ -47,6 +47,10 @@ body{
   border: 1px black solid;
 }
 
+#homeContainer{
+  text-align: center;
+}
+
 #buyButton{
   color: black;
   background-color: rgba(25, 190, 25, 0.795);
@@ -94,5 +98,15 @@ body{
     text-align: left;
     display: inline-block;
     border: 1px black solid;
+  }
+
+  #loginButton{
+    position: absolute;
+    top: 25px;
+  }
+
+  #menuButton{
+    position: absolute;
+    top: 25px;
   }
 }

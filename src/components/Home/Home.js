@@ -148,7 +148,7 @@ function Home(props) {
   }
 
     return (
-      <div>
+      <div id='homeContainer'>
         <Divider />
         {displayProducts()}
       </div>
