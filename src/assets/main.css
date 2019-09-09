@@ -76,6 +76,66 @@ body{
   margin-top: 15px;
 }
 
+#price{
+  text-decoration: line-through;
+}
+
+#left{
+  display: inline-block;
+  width: 35%;
+}
+
+#right{
+  margin-left: 10%;
+  display: inline-block;
+  width: 55%;
+}
+
+#discountContainer{
+  border: 1px solid black;
+  height: 50px;
+  margin-bottom: 5px;
+  position: relative;
+}
+
+#discountBox{
+  font-size: 12px;
+}
+
+#discountPrice{
+  display: inline-block;
+  font-size: 20px;
+  width: 40%;
+  text-align: center;
+}
+
+#discountPercent{
+  display: inline-block;
+  width: 20%;
+  font-size: 12px;
+  text-align: center;
+  margin-right: 5%;
+}
+
+#discountRemaining{
+  display: inline-block;
+  width: 20%;
+  font-size: 13px;
+  text-align: center;
+}
+
+#active{
+  background-color: rgb(6, 214, 6);
+  border: 1px solid black;
+  margin-bottom: 5px;
+  height: 50px;
+}
+
+#joinButton{
+  background-color: rgb(6, 214, 6);
+  margin-top: 20px
+}
+
 @media only screen and (max-width: 1000px) {
   #card{
     text-align: left;
