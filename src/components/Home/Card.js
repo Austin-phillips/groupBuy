@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -6,15 +6,24 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Countdown from 'react-countdown-now';
+import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   card: {
     width: 400,
   },
   media: {
     height: 180,
   },
-});
+  root: {
+    width: '100%',
+    marginTop: theme.spacing(3),
+    overflowX: 'auto',
+  },
+  table: {
+    width: 150,
+  },
+}));
 
 function ProductCard(props) {
   const classes = useStyles();
@@ -41,59 +50,115 @@ function ProductCard(props) {
     if (count < first) {
       return (
         <div>
-          <div id='active'>
-            <div id='discountPrice'>
-              <p1 id='discountText'>${(price * tierOne).toFixed(2)}</p1>
+          <Paper id='active'>
+            <div id='discountContainer'>
+              <span id='discountPrice'>${(price * tierOne).toFixed(2)}</span>
             </div>
-            <div id='discountPercent'>
-              <p1 id='discountText'>{100 - (tierOne * 100)}% off retail</p1>
+            <div id='discountContainer'>
+              <span id='discountPercent'>{100 - (tierOne * 100)}% off</span>
             </div>
-            <div id='discountRemaining'>
-              <p1 id='discountText'>Current Discount</p1>
+            <div id='discountContainer'>
+              <span id='discountRemaining'>Current Discount</span>
             </div>
-          </div>
-          <div id='discountContainer'>
-            <div id='discountPrice'>
-              <p1 id='discountText'>${(price * tierTwo).toFixed(2)}</p1>
+          </Paper>
+          <Paper id='paper'>
+            <div id='discountContainer'>
+              <span id='discountPrice'>${(price * tierTwo).toFixed(2)}</span>
             </div>
-            <div id='discountPercent'>
-              <p1 id='discountText'>{100 - (tierTwo * 100)}% off retail</p1>
+            <div id='discountContainer'>
+              <span id='discountPercent'>{100 - (tierTwo * 100)}% off</span>
             </div>
-            <div id='discountRemaining'>
-              <p1 id='discountText'>{first - count} until next discount</p1>
+            <div id='discountContainer'>
+              <span id='discountRemaining'>{first - count} {first - count > 1 ? 'members' : 'member'} needed</span>
             </div>
-          </div>
-          <div id='discountContainer'>
-            <p1>${(price * tierThree).toFixed(2)}</p1>
-          </div>
+          </Paper>
+          <Paper id='paper'>
+            <div id='discountContainer'>
+              <span id='discountPrice'>${(price * tierThree).toFixed(2)}</span>
+            </div>
+            <div id='discountContainer'>
+              <span id='discountPercent'>{100 - (tierThree * 100)}% off</span>
+            </div>
+            <div id='discountContainer'>
+              <span id='discountRemaining'>{second - count} {second - count > 1 ? 'members' : 'member'} needed</span>
+            </div>
+          </Paper>
         </div>
       )
     } else if (count < second) {
       return (
         <div>
-          <div id='discountContainer'>
-            <p1>${(price * tierOne).toFixed(2)}</p1>
-          </div>
-          <div id='active'>
-            <p1>${(price * tierTwo).toFixed(2)}</p1>
-          </div>
-          <div id='discountContainer'>
-            <p1>${(price * tierThree).toFixed(2)}</p1>
-          </div>
+          <Paper id='paper'>
+            <div id='discountContainer'>
+              <span id='discountPrice'>${(price * tierOne).toFixed(2)}</span>
+            </div>
+            <div id='discountContainer'>
+              <span id='discountPercent'>{100 - (tierOne * 100)}% off</span>
+            </div>
+            <div id='discountContainer'>
+              <span id='discountRemaining'>Done</span>
+            </div>
+          </Paper>
+          <Paper id='active'>
+            <div id='discountContainer'>
+              <span id='discountPrice'>${(price * tierTwo).toFixed(2)}</span>
+            </div>
+            <div id='discountContainer'>
+              <span id='discountPercent'>{100 - (tierTwo * 100)}% off</span>
+            </div>
+            <div id='discountContainer'>
+              <span id='discountRemaining'>Current Discount</span>
+            </div>
+          </Paper>
+          <Paper id='paper'>
+            <div id='discountContainer'>
+              <span id='discountPrice'>${(price * tierThree).toFixed(2)}</span>
+            </div>
+            <div id='discountContainer'>
+              <span id='discountPercent'>{100 - (tierThree * 100)}% off</span>
+            </div>
+            <div id='discountContainer'>
+              <span id='discountRemaining'>{second - count} {second - count > 1 ? 'members' : 'member'} needed</span>
+            </div>
+          </Paper>
         </div>
       )
     } else {
       return (
         <div>
-          <div id='discountContainer'>
-            <p1>${(price * tierOne).toFixed(2)}</p1>
-          </div>
-          <div id='discountContainer'>
-            <p1>${(price * tierTwo).toFixed(2)}</p1>
-          </div>
-          <div id='active'>
-            <p1>${(price * tierThree).toFixed(2)}</p1>
-          </div>
+          <Paper id='paper'>
+            <div id='discountContainer'>
+              <span id='discountPrice'>${(price * tierOne).toFixed(2)}</span>
+            </div>
+            <div id='discountContainer'>
+              <span id='discountPercent'>{100 - (tierOne * 100)}% off</span>
+            </div>
+            <div id='discountContainer'>
+              <span id='discountRemaining'>Done</span>
+            </div>
+          </Paper>
+          <Paper id='paper'>
+            <div id='discountContainer'>
+              <span id='discountPrice'>${(price * tierTwo).toFixed(2)}</span>
+            </div>
+            <div id='discountContainer'>
+              <span id='discountPercent'>{100 - (tierTwo * 100)}% off</span>
+            </div>
+            <div id='discountContainer'>
+              <span id='discountRemaining'>Done</span>
+            </div>
+          </Paper>
+          <Paper id='active'>
+            <div id='discountContainer'>
+              <span id='discountPrice'>${(price * tierThree).toFixed(2)}</span>
+            </div>
+            <div id='discountContainer'>
+              <span id='discountPercent'>{100 - (tierThree * 100)}% off</span>
+            </div>
+            <div id='discountContainer'>
+              <span id='discountRemaining'>Current Discount</span>
+            </div>
+          </Paper>
         </div>
       )
     }
@@ -106,7 +171,7 @@ function ProductCard(props) {
         image={image1}
         title="Contemplative Reptile"
       />
-      <CardContent id='content'>
+      <CardContent>
         <div id='left'>
           <Typography gutterBottom variant="h6" component="h2">
             {name.charAt(0).toUpperCase() + name.slice(1)}
@@ -121,11 +186,9 @@ function ProductCard(props) {
         </div>
         <div id='right'>
           {displayDiscount()}
-          <div id='joinedContainer'>
-            <Typography align='center' variant="body2" component="p">
-              Paq Members Joined: {count}/{personLimit}
-            </Typography>
-          </div>
+          <Typography align='center' variant="body2" component="p">
+            Paq Members Joined: {count}/{personLimit}
+          </Typography>
         </div>
         <div id='countdown'>
           <Countdown date={Date.parse(timeStamp) + (timer * 24 * 60 * 60 * 1000)} renderer={renderer} />

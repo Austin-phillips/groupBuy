@@ -20,7 +20,7 @@ function Home(props) {
     <div id='homeContainer'>
       <Divider />
       {props.products.map(product => {
-        return <ProductCard product={product} />
+        return <ProductCard product={product} key={product.id} />
       })}
     </div>
   );
