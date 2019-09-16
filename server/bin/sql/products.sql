@@ -6,7 +6,7 @@ CREATE TABLE products(
   price          INT,
   "personLimit"  INT,
   timer          INT,
-  "timeStamp"    Date DEFAULT '28 Aug 2019 00:12:00 GMT',
+  "timeStamp"    Date DEFAULT '20 Sep 2019 00:12:00 GMT',
   count          INT,
   category       VARCHAR(50),
   sold           BOOLEAN DEFAULT false,
