@@ -17,4 +17,4 @@ CREATE TABLE users(
 
 INSERT INTO users(first, last, phone, email, "addressOne", city, state, zip, card, company, complete, admin)
 VALUES
-('Austin', 'Phillips', '8019799538', 'phillips.austin51@gmail.com', '1485 E Hidden Valley Drive', 'Sandy', 'Utah', '84020', 'lajsdfasdfu0sdf9u90sdfasd0f9h', true, true, true);
+('Austin', 'Phillips', '8019799538', 'phillips.austin51@gmail.com', '1485 E Hidden Valley Drive', 'Sandy', 'Utah', '84020', 'lajsdfasdfu0sdf9u90sdfasd0f9h', false, true, true);

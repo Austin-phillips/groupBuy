@@ -4,6 +4,8 @@ const user = (state = {}, action) => {
       return action.user;
     case 'LOGOUT':
       return {};
+      case 'UPDATEUSER' :
+        return action.user;
     default:
       return state;
   }

@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { connect } from 'react-redux';
 import Divider from '@material-ui/core/Divider';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import {Link, withRouter} from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+import {updateUser} from '../../actions/user';
+import CreateCompany from './CreateCompany';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -29,26 +32,43 @@ function Profile(props) {
   const classes = useStyles();
   const {company, companyId, admin } = props.user;
   const [editing, updateEditing] = useState(false);
-  const [values, setValues] = React.useState({
-    first: props.user.first,
-    last: props.user.last,
-    phone: props.user.phone,
+  const [createCompany, updateCreateCompany] = useState(false);
+  const [user, setUser] = React.useState({
+    id: props.user.id,
+    first: props.user.first || '',
+    last: props.user.last || '',
+    phone: props.user.phone || '',
     email: props.user.email,
-    addressOne: props.user.addressOne,
-    addressTwo: props.user.addressTwo,
-    city: props.user.city,
-    state: props.user.state,
-    zip: props.user.zip,
-    card: props.user.card,
+    addressOne: props.user.addressOne || '',
+    addressTwo: props.user.addressTwo || '',
+    city: props.user.city || '',
+    state: props.user.state || '',
+    zip: props.user.zip || '',
+    card: props.user.card || '',
+    complete: props.user.complete,
   });
 
   const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
+    setUser({ ...user, [name]: event.target.value });
   };
 
   const handleSave = () => {
-    console.log(values);
+    const {dispatch} = props;
+    dispatch(updateUser(user));
     updateEditing(!editing);
+  }
+
+  const handleCreateCompany = () => {
+    if (createCompany) {
+      return (
+        <div>
+          <CreateCompany />
+          <Button onClick={() => updateCreateCompany(!createCompany)}>Cancel</Button>
+        </div>
+      )
+    } else {
+      return null
+    }
   }
 
   if (editing) {
@@ -62,7 +82,7 @@ function Profile(props) {
                 id="standard-name"
                 label="First"
                 className={classes.textField}
-                value={values.first}
+                value={user.first}
                 onChange={handleChange('first')}
                 margin="normal"
               />
@@ -70,7 +90,7 @@ function Profile(props) {
                 id="standard-name"
                 label="Last"
                 className={classes.textField}
-                value={values.last}
+                value={user.last}
                 onChange={handleChange('last')}
                 margin="normal"
               />
@@ -78,7 +98,7 @@ function Profile(props) {
                 id="standard-name"
                 label="Phone"
                 className={classes.textField}
-                value={values.phone}
+                value={user.phone}
                 onChange={handleChange('phone')}
                 margin="normal"
               />
@@ -86,15 +106,18 @@ function Profile(props) {
                 id="standard-name"
                 label="Email"
                 className={classes.textField}
-                value={values.email}
+                value={user.email}
                 onChange={handleChange('email')}
                 margin="normal"
+                InputProps={{
+                  readOnly: true,
+                }}
               />
               <TextField
                 id="standard-name"
                 label="Street Address"
                 className={classes.textField}
-                value={values.addressOne}
+                value={user.addressOne}
                 onChange={handleChange('addressOne')}
                 margin="normal"
               />
@@ -102,7 +125,7 @@ function Profile(props) {
                 id="standard-name"
                 label="Apt"
                 className={classes.textField}
-                value={values.addressTwo || ''}
+                value={user.addressTwo}
                 onChange={handleChange('addressTwo')}
                 margin="normal"
               />
@@ -110,7 +133,7 @@ function Profile(props) {
                 id="standard-name"
                 label="City"
                 className={classes.textField}
-                value={values.city}
+                value={user.city}
                 onChange={handleChange('city')}
                 margin="normal"
               />
@@ -118,7 +141,7 @@ function Profile(props) {
                 id="standard-name"
                 label="State"
                 className={classes.textField}
-                value={values.state}
+                value={user.state}
                 onChange={handleChange('state')}
                 margin="normal"
               />
@@ -126,7 +149,7 @@ function Profile(props) {
                 id="standard-name"
                 label="Zipcode"
                 className={classes.textField}
-                value={values.zip}
+                value={user.zip}
                 onChange={handleChange('zip')}
                 margin="normal"
               />
@@ -141,27 +164,35 @@ function Profile(props) {
       <div>
         <Paper id='profileHeader'>
           <Paper id='profileImage'>Image</Paper>
-          <Typography variant='h3' gutterBottom align='center'>{values.first} {values.last}</Typography>
+          <Typography variant='h3' gutterBottom align='center'>{user.first} {user.last}</Typography>
           <Button onClick={() => updateEditing(!editing)} id='profileEditButton' size='small'>Edit Profile</Button>
+          {company ? 
+            <Link to='company' id='link'>
+              <Button id='profileCompanyButton' size='small'>View Company Dashboard</Button>
+            </Link>
+            :
+            <Button id='profileCompanyButton' onClick={() => updateCreateCompany(!createCompany)} size='small'>Create Company Page</Button>
+          }
+          {handleCreateCompany()}
         </Paper>
         <Paper id='profileBody'>
           <div id='innerBodyContainer'>
             <Typography variant='h5' gutterBottom align='center'>Account Information</Typography>
             <Divider />
             <Typography id='text' variant='subtitle2' align='center'>Phone Number</Typography>
-            <Typography align='center'>{values.phone}</Typography>
+            <Typography align='center'>{user.phone}</Typography>
             <Divider />
             <Typography id='text' variant='subtitle2' align='center'>Email</Typography>
-            <Typography align='center'>{values.email}</Typography>
+            <Typography align='center'>{user.email}</Typography>
             <Divider />
             <Typography id='text' variant='subtitle2' align='center'>Street</Typography>
-            <Typography align='center'>{values.addressOne}</Typography>
+            <Typography align='center'>{user.addressOne}</Typography>
             <Divider />
             <Typography id='text' variant='subtitle2' align='center'>City, State</Typography>
-            <Typography align='center'>{values.city}, {values.state}</Typography>
+            <Typography align='center'>{user.city}, {user.state}</Typography>
             <Divider />
             <Typography id='text' variant='subtitle2' align='center'>Zipcode</Typography>
-            <Typography align='center'>{values.zip}</Typography>
+            <Typography align='center'>{user.zip}</Typography>
             <Divider />
           </div>
         </Paper>
@@ -176,4 +207,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Profile);
+export default withRouter(connect(mapStateToProps)(Profile));

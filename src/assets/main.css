@@ -112,14 +112,16 @@ body{
   width: 33%;
   display: inline-block;
   text-align: center;
+  padding-top: 6px;
 }
 
 #discountPrice{
-  font-size: 25px;
+  font-size: 20px;
 }
 
 #discountPercent{
   font-size: 12px;
+  font-weight: bold;
 }
 
 #discountRemaining{
@@ -127,17 +129,18 @@ body{
 }
 
 #active{
-  background-color: rgb(6, 214, 6);
+  background-color: rgba(7, 202, 7, 0.596);
   border: 1px solid black;
   margin-bottom: 5px;
   height: 50px;
 }
 
 #joinButton{
-  background-color: rgb(6, 214, 6);
-  margin-top: 20px
+  background-color: rgba(7, 202, 7, 0.596);
+  margin-top: 20px;
 }
 
+/* Large */
 @media only screen and (max-width: 1000px) {
   #card{
     text-align: left;
@@ -147,6 +150,7 @@ body{
   }
 }
 
+/* Medium */
 @media only screen and (max-width: 920px) {
   #card{
     text-align: left;
@@ -156,6 +160,7 @@ body{
   }
 }
 
+/* Small */
 @media only screen and (max-width: 600px) {
   #card{
     text-align: left;
@@ -200,6 +205,14 @@ body{
 
 #profileEditButton{
   background-color: rgba(70, 165, 255, 0.842);
+  margin: 5px;
+  height: 40px;
+}
+
+#profileCompanyButton{
+  background-color: rgba(255, 166, 0, 0.842);
+  font-size: 10px;
+  height: 40px;
 }
 
 #saveButton{
@@ -219,4 +232,24 @@ body{
 
 #text{
   color: grey;
+}
+
+@media only screen and (max-width: 1000px) {
+
+}
+
+/* Medium */
+@media only screen and (max-width: 920px) {
+  #innerBodyContainer{
+    width: 60%;
+    margin: auto;
+  }
+}
+
+/* Small */
+@media only screen and (max-width: 600px) {
+ #innerBodyContainer{
+    width: 100%;
+    margin: auto;
+  }
 }

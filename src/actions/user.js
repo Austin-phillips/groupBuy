@@ -16,4 +16,16 @@ export const userLogout = () => {
   return (dispatch) => {
     dispatch({type: 'LOGOUT'});
   }
+};
+
+export const updateUser = (user) => {
+  return (dispatch) => {
+    axios.put('/api/users/update', user)
+      .then(res => {
+        dispatch({type: 'UPDATEUSER', user: res.data})
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 }
