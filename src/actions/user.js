@@ -10,7 +10,7 @@ export const login = (email) => {
         console.log(err)
       })
   }
-}
+};
 
 export const userLogout = () => {
   return (dispatch) => {
@@ -28,4 +28,16 @@ export const updateUser = (user) => {
         console.log(err)
       })
   }
-}
+};
+
+export const updateUserCompany = (info) => {
+  return (dispatch) => {
+    axios.put('/api/users/update/company', info)
+      .then(res => {
+        dispatch({type: 'UPDATEUSER', user: res.data})
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+};

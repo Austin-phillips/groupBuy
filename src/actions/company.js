@@ -11,3 +11,15 @@ export const getCompanies = () => {
       })
   }
 }
+
+export const createCompanyUser = (company) => {
+  return (dispatch) => {
+    axios.post('/api/companies', company)
+      .then(res => {
+        console.log("Both relations successfully created");
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+}

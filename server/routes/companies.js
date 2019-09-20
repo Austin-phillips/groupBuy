@@ -14,4 +14,21 @@ router.get('/', (request, response, next) => {
   )
 });
 
+router.post('/', (request, response, next) => {
+  const {companyName, userId} = request.body;
+
+  pool.query(
+    `INSERT INTO companies(name)
+     VALUES($1)
+     RETURNING id`,
+     [companyName],
+     (err, res) => {
+       if (err) next(err);
+
+       const companyId = res.rows[0].id;
+       response.redirect(307, `/api/company/user/${companyId}/${userId}`);
+     }
+  )
+})
+
 module.exports = router;

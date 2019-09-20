@@ -7,8 +7,8 @@ import TextField from '@material-ui/core/TextField';
 import {Link, withRouter} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import {updateUser} from '../../actions/user';
-import CreateCompany from './CreateCompany';
+import {createCompanyUser} from '../../actions/company';
+import {updateUser, updateUserCompany} from '../../actions/user';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -30,9 +30,10 @@ const useStyles = makeStyles(theme => ({
 
 function Profile(props) {
   const classes = useStyles();
-  const {company, companyId, admin } = props.user;
+  const {company} = props.user;
   const [editing, updateEditing] = useState(false);
   const [createCompany, updateCreateCompany] = useState(false);
+  const [companyName, setCompanyName] = useState('')
   const [user, setUser] = React.useState({
     id: props.user.id,
     first: props.user.first || '',
@@ -52,18 +53,46 @@ function Profile(props) {
     setUser({ ...user, [name]: event.target.value });
   };
 
-  const handleSave = () => {
+  const handleCompanyChange = name => event => {
+    setCompanyName(event.target.value);
+  };
+
+  const handleSaveUser = () => {
     const {dispatch} = props;
     dispatch(updateUser(user));
-    updateEditing(!editing);
+    updateEditing(false);
+  }
+
+  const handleSaveCompany = () => {
+    const {dispatch} = props;
+    const userId = user.id
+    dispatch(createCompanyUser({companyName, userId}))
+    setCompanyName('');
+    updateCreateCompany(!createCompany)
+    dispatch(updateUserCompany({company: true, userId}))
+  }
+
+  const handleCancel = () => {
+    setCompanyName('')
+    updateCreateCompany(!createCompany)
   }
 
   const handleCreateCompany = () => {
     if (createCompany) {
       return (
         <div>
-          <CreateCompany />
-          <Button onClick={() => updateCreateCompany(!createCompany)}>Cancel</Button>
+          <form className={classes.container} noValidate autoComplete="off">
+            <TextField
+              id="standard-name"
+              label="Company Name"
+              className={classes.textField}
+              value={companyName}
+              onChange={handleCompanyChange('')}
+              margin="normal"
+            />
+            <Button onClick={() => handleSaveCompany()}>Create</Button>
+            <Button onClick={() => handleCancel()}>Cancel</Button>
+          </form>
         </div>
       )
     } else {
@@ -154,7 +183,7 @@ function Profile(props) {
                 margin="normal"
               />
             </form>
-            <Button id='saveButton' onClick={() => handleSave()}>Save</Button>
+            <Button id='saveButton' onClick={() => handleSaveUser()}>Save</Button>
           </div>
         </Paper>
       </div>
