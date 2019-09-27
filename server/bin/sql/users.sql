@@ -10,11 +10,13 @@ CREATE TABLE users(
   state        VARCHAR(50),
   zip          INT,
   card         VARCHAR(250),
+  "lastFour"   INT,
   admin        BOOLEAN DEFAULT false,
   company      BOOLEAN DEFAULT false,
-  complete     BOOLEAN DEFAULT false
+  complete     BOOLEAN DEFAULT false,
+  image        VARCHAR(250) DEFAULT 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
 );
 
-INSERT INTO users(first, last, phone, email, "addressOne", city, state, zip, card, company, complete, admin)
+INSERT INTO users(first, last, phone, email, "addressOne", city, state, zip, company, complete, admin)
 VALUES
-('Austin', 'Phillips', '8019799538', 'phillips.austin51@gmail.com', '1485 E Hidden Valley Drive', 'Sandy', 'Utah', '84020', 'lajsdfasdfu0sdf9u90sdfasd0f9h', false, true, true);
+('Austin', 'Phillips', '8019799538', 'phillips.austin51@gmail.com', '1485 E Hidden Valley Drive', 'Sandy', 'Utah', '84020', false, true, true);

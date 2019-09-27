@@ -1,4 +1,6 @@
 const { Router } = require('express');
+const stripe = require('stripe')("sk_test_Tl38YHRI5uR5slYtkT0KfbGA0067XM11mZ")
+const uuid = require("uuid/v4");
 const pool = require('../db');
 
 const router = Router();
@@ -46,7 +48,7 @@ router.put('/update', (request, response, next) => {
       response.json(user);
     }
   )
-})
+});
 
 router.put('/update/company', (request, response, next) => {
   const {company, userId} = request.body;
@@ -60,6 +62,67 @@ router.put('/update/company', (request, response, next) => {
       response.json(user);
     }
   )
-})
+});
+
+// add the card
+router.post('/addcard', async (request, response, next) => {
+  let error;
+  let status;
+  try {
+    const { userId, token } = request.body;
+
+    const customer = await
+    stripe.customers.create({
+      email: token.email,
+      source: token.id
+    });
+
+    pool.query(
+      `UPDATE users SET card=($1), "lastFour"=($2) WHERE id=($3) RETURNING *`,
+      [customer.id, token.card.last4, userId],
+      (err, res) => {
+        if (err) return next(err);
+
+        response.json(res.rows[0]);
+      }
+    )
+    status = "success";
+
+  } catch (error) {
+    console.error("Error:", error);
+    status = "failure";
+  }
+});
+
+router.post('/updatecard', async (request, response, next) => {
+  let error;
+  let status;
+  try {
+    const { userId, token, customerId } = request.body;
+
+    const customer = await
+    stripe.customers.update(
+      customerId,
+      {
+      source: token.id
+      }
+    );
+
+    pool.query(
+      `UPDATE users SET card=($1), "lastFour"=($2) WHERE id=($3) RETURNING *`,
+      [customer.id, token.card.last4, userId],
+      (err, res) => {
+        if (err) return next(err);
+
+        response.json(res.rows[0]);
+      }
+    )
+    status = "success";
+
+  } catch (error) {
+    console.error("Error:", error);
+    status = "failure";
+  }
+});
 
 module.exports = router;

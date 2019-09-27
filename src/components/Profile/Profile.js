@@ -4,11 +4,14 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
+import StripeCheckout from 'react-stripe-checkout';
+import Avatar from '@material-ui/core/Avatar';
+import Grid from '@material-ui/core/Grid';
 import {Link, withRouter} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import {createCompanyUser} from '../../actions/company';
-import {updateUser, updateUserCompany} from '../../actions/user';
+import {updateUser, updateUserCompany, addCard, updateCard} from '../../actions/user';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -26,11 +29,15 @@ const useStyles = makeStyles(theme => ({
   menu: {
     width: 200,
   },
+  bigAvatar: {
+    margin: 10,
+    width: 180,
+    height: 180,
+  },
 }));
 
 function Profile(props) {
   const classes = useStyles();
-  const {company} = props.user;
   const [editing, updateEditing] = useState(false);
   const [createCompany, updateCreateCompany] = useState(false);
   const [companyName, setCompanyName] = useState('')
@@ -45,8 +52,11 @@ function Profile(props) {
     city: props.user.city || '',
     state: props.user.state || '',
     zip: props.user.zip || '',
-    card: props.user.card || '',
+    card: props.user.card,
     complete: props.user.complete,
+    lastFour: props.user.lastFour,
+    company: props.user.company,
+    image: props.user.image
   });
 
   const handleChange = name => event => {
@@ -75,6 +85,16 @@ function Profile(props) {
   const handleCancel = () => {
     setCompanyName('')
     updateCreateCompany(!createCompany)
+  }
+
+  const handleToken = (token) => {
+    const {dispatch} = props;
+    dispatch(addCard(token, user.id))
+  }
+
+  const updateToken = (token) => {
+    const {dispatch} = props;
+    dispatch(updateCard(token, user.id, user.card))
   }
 
   const handleCreateCompany = () => {
@@ -192,12 +212,14 @@ function Profile(props) {
     return (
       <div>
         <Paper id='profileHeader'>
-          <Paper id='profileImage'>Image</Paper>
-          <Typography variant='h3' gutterBottom align='center'>{user.first} {user.last}</Typography>
+          <Grid container justify="center" alignItems="center">
+            <Avatar alt="Profile Picture" src={user.image} className={classes.bigAvatar} />
+          </Grid>
+          <Typography id='text' variant='h3' gutterBottom align='center'>{user.first} {user.last}</Typography>
           <Button onClick={() => updateEditing(!editing)} id='profileEditButton' size='small'>Edit Profile</Button>
-          {company ? 
+          {user.company ? 
             <Link to='company' id='link'>
-              <Button id='profileCompanyButton' size='small'>View Company Dashboard</Button>
+              <Button id='profileCompanyButton' size='small'>Company Dashboard</Button>
             </Link>
             :
             <Button id='profileCompanyButton' onClick={() => updateCreateCompany(!createCompany)} size='small'>Create Company Page</Button>
@@ -206,23 +228,52 @@ function Profile(props) {
         </Paper>
         <Paper id='profileBody'>
           <div id='innerBodyContainer'>
-            <Typography variant='h5' gutterBottom align='center'>Account Information</Typography>
+            <Typography id='text' variant='h5' gutterBottom align='center'>Account Information</Typography>
             <Divider />
             <Typography id='text' variant='subtitle2' align='center'>Phone Number</Typography>
-            <Typography align='center'>{user.phone}</Typography>
+            <Typography id='text' align='center'>{user.phone}</Typography>
             <Divider />
             <Typography id='text' variant='subtitle2' align='center'>Email</Typography>
-            <Typography align='center'>{user.email}</Typography>
+            <Typography id='text' align='center'>{user.email}</Typography>
             <Divider />
             <Typography id='text' variant='subtitle2' align='center'>Street</Typography>
-            <Typography align='center'>{user.addressOne}</Typography>
+            <Typography id='text' align='center'>{user.addressOne}</Typography>
             <Divider />
             <Typography id='text' variant='subtitle2' align='center'>City, State</Typography>
-            <Typography align='center'>{user.city}, {user.state}</Typography>
+            <Typography id='text' align='center'>{user.city}, {user.state}</Typography>
             <Divider />
             <Typography id='text' variant='subtitle2' align='center'>Zipcode</Typography>
-            <Typography align='center'>{user.zip}</Typography>
+            <Typography id='text' align='center'>{user.zip}</Typography>
             <Divider />
+            {user.card ? 
+              <div>
+                <Typography id='text' variant='subtitle2' align='center'>Card On File</Typography>
+                <Typography align='center'>**** **** **** {user.lastFour}</Typography> 
+                <StripeCheckout
+                  id="stripeDiv"
+                  stripeKey="pk_test_1Li60if50UsdBGtVgCeVwtw200C4oQejlR"
+                  token={updateToken}
+                  ComponentClass="div"
+                  panelLabel="Update Card"
+                >
+                  <div id='addCardContainer'>
+                    <Button id='addCard'>Update Card</Button>
+                  </div>
+                </StripeCheckout>
+              </div>
+              :
+              <StripeCheckout
+                id="stripeDiv"
+                stripeKey="pk_test_1Li60if50UsdBGtVgCeVwtw200C4oQejlR"
+                token={handleToken}
+                ComponentClass="div"
+                panelLabel="Add Card"
+              >
+                <div id='addCardContainer'>
+                  <Button id='addCard'>Add Card</Button>
+                </div>
+              </StripeCheckout>
+            }
           </div>
         </Paper>
       </div>

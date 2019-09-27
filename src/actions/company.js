@@ -1,10 +1,11 @@
 import axios from 'axios';
 
-export const getCompanies = () => {
+export const getCompany = (userId, callback) => {
   return (dispatch) => {
-    axios.get(`/api/companies`)
+    axios.get(`/api/companies/${userId}`)
       .then(res => {
-        dispatch({ type: 'GET_COMPANIES', companies: res.data })
+        dispatch({ type: 'GET_COMPANY', company: res.data })
+        callback()
       })
       .catch(err => {
         console.log(err)
@@ -17,6 +18,7 @@ export const createCompanyUser = (company) => {
     axios.post('/api/companies', company)
       .then(res => {
         console.log("Both relations successfully created");
+        window.location.replace("/company")
       })
       .catch(err => {
         console.log(err)

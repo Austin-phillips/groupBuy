@@ -5,9 +5,10 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const path = require('path');
 const routes = require('./routes');
-
 const app = express();
 const dev = app.get('env') !== 'production';
+const cron = require('node-cron');
+const autoBill = require('./autoBill');
 
 app.use(bodyParser.json());
 app.use(helmet());
@@ -17,6 +18,9 @@ app.use('/api', routes);
 app.use((err, req, res, next) => {
   res.json(err);
 });
+// cron.schedule("* * * * *", function () {
+//   autoBill()
+// })
 
 // Production
 if (!dev) {

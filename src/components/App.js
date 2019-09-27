@@ -4,6 +4,7 @@ import Profile from './Profile/Profile';
 import singleProduct from './Product/SingleProduct';
 import FetchUser from "./FetchUser";
 import Company from "./Company/Company";
+import Loader from './Loader';
 import { Route, Switch } from "react-router-dom";
 import { useAuth0 } from "../react-auth0-wrapper";
 import Menu from "./NavBar/Menu";
@@ -12,12 +13,10 @@ function App() {
   const { loading } = useAuth0();
 
   if (loading) {
-    return (
-      <div>Loading...</div>
-    );
+    return <Loader />
   }
   return (
-    <div>
+    <div id='appMain'>
       <FetchUser />
         <Menu />
         <Switch>

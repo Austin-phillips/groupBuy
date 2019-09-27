@@ -3,13 +3,17 @@ const pool = require('../db');
 
 const router = Router();
 
-router.get('/', (request, response, next) => {
+router.get('/:userId', (request, response, next) => {
+  const {userId} = request.params;
   pool.query(
-    `SELECT * FROM companies;`,
+    `SELECT * FROM company_user_relation cur
+     INNER JOIN companies c ON c.id = cur."companyId"
+     WHERE cur."userId" = $1`,
+     [userId],
     (err, res) => {
       if (err) next(err);
 
-      response.json(res.rows);
+      response.json(res.rows[0]);
     }
   )
 });

@@ -1,7 +1,7 @@
 const companies = (state = [], action) => {
   switch (action.type) {
-    case 'GET_COMPANIES':
-      return action.companies
+    case 'GET_COMPANY':
+      return action.company
     case 'ADD_COMPANY':
       return [...state, action.company]
     case 'UPDATE_COMPANY':

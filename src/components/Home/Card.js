@@ -7,18 +7,20 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Countdown from 'react-countdown-now';
 import Paper from '@material-ui/core/Paper';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import CheckIcon from '@material-ui/icons/Check';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles(theme => ({
   card: {
-    width: 350,
+    width: 330,
+    height: 450
   },
   media: {
     height: 180,
   },
   root: {
-    width: '100%',
-    marginTop: theme.spacing(3),
-    overflowX: 'auto',
+    flexGrow: 1,
   },
   table: {
     width: 150,
@@ -52,33 +54,33 @@ function ProductCard(props) {
         <div>
           <Paper id='active'>
             <div id='discountContainer'>
-              <span id='discountPrice'>${(price * tierOne).toFixed(2)}</span>
+              <span id='discountPrice'>${Math.round((price * tierOne))}</span>
             </div>
-            <div id='discountContainer'>
+            {/* <div id='discountContainer'>
               <span id='discountPercent'>{100 - (tierOne * 100)}% off</span>
-            </div>
+            </div> */}
             <div id='discountContainer'>
-              <span id='discountRemaining'>Current Discount</span>
+              <span id='discountRemaining'>Current Paq Price</span>
             </div>
           </Paper>
           <Paper id='paper'>
             <div id='discountContainer'>
-              <span id='discountPrice'>${(price * tierTwo).toFixed(2)}</span>
+              <span id='discountPrice'>${Math.round((price * tierTwo))}</span>
             </div>
-            <div id='discountContainer'>
+            {/* <div id='discountContainer'>
               <span id='discountPercent'>{100 - (tierTwo * 100)}% off</span>
-            </div>
+            </div> */}
             <div id='discountContainer'>
               <span id='discountRemaining'>{first - count} {first - count > 1 ? 'members' : 'member'} needed</span>
             </div>
           </Paper>
           <Paper id='paper'>
             <div id='discountContainer'>
-              <span id='discountPrice'>${(price * tierThree).toFixed(2)}</span>
+              <span id='discountPrice'>${Math.round((price * tierThree))}</span>
             </div>
-            <div id='discountContainer'>
+            {/* <div id='discountContainer'>
               <span id='discountPercent'>{100 - (tierThree * 100)}% off</span>
-            </div>
+            </div> */}
             <div id='discountContainer'>
               <span id='discountRemaining'>{second - count} {second - count > 1 ? 'members' : 'member'} needed</span>
             </div>
@@ -90,33 +92,33 @@ function ProductCard(props) {
         <div>
           <Paper id='paper'>
             <div id='discountContainer'>
-              <span id='discountPrice'>${(price * tierOne).toFixed(2)}</span>
+              <span id='discountPrice'>${Math.round((price * tierOne))}</span>
             </div>
-            <div id='discountContainer'>
+            {/* <div id='discountContainer'>
               <span id='discountPercent'>{100 - (tierOne * 100)}% off</span>
-            </div>
+            </div> */}
             <div id='discountContainer'>
-              <span id='discountRemaining'>Done</span>
+              <span id='discountRemaining'><ListItemIcon><CheckIcon /></ListItemIcon></span>
             </div>
           </Paper>
           <Paper id='active'>
             <div id='discountContainer'>
-              <span id='discountPrice'>${(price * tierTwo).toFixed(2)}</span>
+              <span id='discountPrice'>${Math.round((price * tierTwo))}</span>
             </div>
-            <div id='discountContainer'>
+            {/* <div id='discountContainer'>
               <span id='discountPercent'>{100 - (tierTwo * 100)}% off</span>
-            </div>
+            </div> */}
             <div id='discountContainer'>
               <span id='discountRemaining'>Current Discount</span>
             </div>
           </Paper>
           <Paper id='paper'>
             <div id='discountContainer'>
-              <span id='discountPrice'>${(price * tierThree).toFixed(2)}</span>
+              <span id='discountPrice'>${Math.round((price * tierThree))}</span>
             </div>
-            <div id='discountContainer'>
+            {/* <div id='discountContainer'>
               <span id='discountPercent'>{100 - (tierThree * 100)}% off</span>
-            </div>
+            </div> */}
             <div id='discountContainer'>
               <span id='discountRemaining'>{second - count} {second - count > 1 ? 'members' : 'member'} needed</span>
             </div>
@@ -128,33 +130,33 @@ function ProductCard(props) {
         <div>
           <Paper id='paper'>
             <div id='discountContainer'>
-              <span id='discountPrice'>${(price * tierOne).toFixed(2)}</span>
+              <span id='discountPrice'>${Math.round((price * tierOne))}</span>
             </div>
-            <div id='discountContainer'>
+            {/* <div id='discountContainer'>
               <span id='discountPercent'>{100 - (tierOne * 100)}% off</span>
-            </div>
+            </div> */}
             <div id='discountContainer'>
-              <span id='discountRemaining'>Done</span>
+              <span id='discountRemaining'><ListItemIcon><CheckIcon /></ListItemIcon></span>
             </div>
           </Paper>
           <Paper id='paper'>
             <div id='discountContainer'>
-              <span id='discountPrice'>${(price * tierTwo).toFixed(2)}</span>
+              <span id='discountPrice'>${Math.round((price * tierTwo))}</span>
             </div>
-            <div id='discountContainer'>
+            {/* <div id='discountContainer'>
               <span id='discountPercent'>{100 - (tierTwo * 100)}% off</span>
-            </div>
+            </div> */}
             <div id='discountContainer'>
-              <span id='discountRemaining'>Done</span>
+              <span id='discountRemaining'><ListItemIcon><CheckIcon /></ListItemIcon></span>
             </div>
           </Paper>
           <Paper id='active'>
             <div id='discountContainer'>
-              <span id='discountPrice'>${(price * tierThree).toFixed(2)}</span>
+              <span id='discountPrice'>${Math.round((price * tierThree))}</span>
             </div>
-            <div id='discountContainer'>
+            {/* <div id='discountContainer'>
               <span id='discountPercent'>{100 - (tierThree * 100)}% off</span>
-            </div>
+            </div> */}
             <div id='discountContainer'>
               <span id='discountRemaining'>Current Discount</span>
             </div>
@@ -165,36 +167,39 @@ function ProductCard(props) {
   }
 
   return (
-    <Card className={classes.card} id='card' key={id}>
-      <CardMedia
-        className={classes.media}
-        image={image1}
-        title="Contemplative Reptile"
-      />
-      <CardContent>
-        <div id='left'>
-          <Typography gutterBottom variant="h6" component="h2">
-            {name.charAt(0).toUpperCase() + name.slice(1)}
-          </Typography>
-          <Typography gutterBottom variant="body1" component="p">
-            By: {companyName}
-          </Typography>
-          <Typography id='price' variant="h6" component="h2">
-            ${price.toFixed(2)}
-          </Typography>
-          <Button id='joinButton'>Join Paq</Button>
-        </div>
-        <div id='right'>
-          {displayDiscount()}
-          <Typography align='center' variant="body2" component="p">
-            Paq Members Joined: {count}/{personLimit}
-          </Typography>
-        </div>
-        <div id='countdown'>
-          <Countdown date={Date.parse(timeStamp) + (timer * 24 * 60 * 60 * 1000)} renderer={renderer} />
-        </div>
-      </CardContent>
-    </Card>
+    <Grid item sm={12} md={6} lg={4} xl={3}>
+      <Card className={classes.card} id='card' key={id}>
+        <CardMedia
+          className={classes.media}
+          image={image1}
+          title="Contemplative Reptile"
+        />
+        <CardContent>
+          <div id='left'>
+            <Typography id='text' gutterBottom variant="h6" component="h2">
+              {name.charAt(0).toUpperCase() + name.slice(1)}
+            </Typography>
+            <Typography id='text' gutterBottom variant="body1" component="p">
+              By: {companyName}
+            </Typography>
+            <Typography id='text' id='price' variant="h6" component="h2">
+              ${price.toFixed(2)}
+            </Typography>
+            <Button id='joinButton'>Join Paq</Button>
+          </div>
+          <div id='right'>
+            {displayDiscount()}
+            <Typography id='joinedText' align='center' variant="body2" component="p">
+              Paq Members Joined: {count}/{personLimit}
+            </Typography>
+          </div>
+          <div id='countdown'>
+            <Countdown date={Date.parse(timeStamp) + (timer * 24 * 60 * 60 * 1000)} renderer={renderer} />
+          </div>
+        </CardContent>
+      </Card>
+
+    </Grid>
   )
 }
 

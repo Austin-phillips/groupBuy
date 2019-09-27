@@ -41,3 +41,29 @@ export const updateUserCompany = (info) => {
       })
   }
 };
+
+export const addCard = (token, id) => {
+  return (dispatch) => {
+    axios.post('/api/users/addcard', {userId: id, token: token})
+      .then(res => {
+        dispatch({type: 'UPDATEUSER', user: res.data})
+        window.location.replace('/profile');
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+};
+
+export const updateCard = (token, id, customerId) => {
+  return (dispatch) => {
+    axios.post('/api/users/updatecard', {userId: id, token, customerId})
+      .then(res => {
+        dispatch({type: 'UPDATEUSER', user: res.data})
+        window.location.replace('/profile');
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+};

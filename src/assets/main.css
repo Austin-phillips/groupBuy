@@ -1,6 +1,16 @@
 body{
-  background-color: rgba(128, 128, 128, 0.075);
+  background-color: rgba(128, 128, 128, 0.205);
   width: 100%;
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  overflow: auto;
+}
+
+/* Loader */
+#loader{
+  text-align: center;
 }
 
 /* NavBar */
@@ -42,29 +52,22 @@ body{
 
 /* Home Page */
 #card{
-  text-align: left;
-  display: inline-block;
-  margin: 25px 75px 25px 75px;
-  border: 1px black solid;
+  border: 1px rgba(0, 0, 0, 0.384) solid;
+  margin: auto;
+  margin-top: 30px;
 }
 
 #paper{
   width: 100%;
   height: 50px;
   margin: 6px auto;
-  border: 1px solid black;
-}
-
-#active{
-  width: 100%;
-  height: 50px;
-  margin: 6px auto;
-  border: 1px solid black;
-  background-color: rgb(32, 175, 32);
+  border: 1px solid rgba(0, 0, 0, 0.384);
 }
 
 #homeContainer{
-  text-align: center;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
 }
 
 #buyButton{
@@ -73,7 +76,7 @@ body{
 }
 
 #countdown{
-  background-color: rgba(0, 0, 0, 0.877);
+  background-color: rgba(0, 0, 0, 0.836);
   font-size: 25px;
   text-align: center;
   border-radius: 10px;
@@ -96,6 +99,7 @@ body{
 }
 
 #left{
+  text-align: center;
   display: inline-block;
   width: 30%;
   vertical-align: top;
@@ -109,14 +113,15 @@ body{
 }
 
 #discountContainer{
-  width: 33%;
+  width: 50%;
   display: inline-block;
   text-align: center;
   padding-top: 6px;
 }
 
 #discountPrice{
-  font-size: 20px;
+  font-size: 18px;
+  font-family: 'Comfortaa', 'cursive';
 }
 
 #discountPercent{
@@ -126,11 +131,12 @@ body{
 
 #discountRemaining{
   font-size: 12px;
+  font-family: 'Comfortaa', 'cursive';
 }
 
 #active{
   background-color: rgba(7, 202, 7, 0.596);
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.384);
   margin-bottom: 5px;
   height: 50px;
 }
@@ -138,6 +144,13 @@ body{
 #joinButton{
   background-color: rgba(7, 202, 7, 0.596);
   margin-top: 20px;
+  font-family: 'Comfortaa', 'cursive';
+  font-size: 13px;
+}
+
+#joinedText{
+  font-family: 'Comfortaa', 'cursive';
+  font-size: 12px;
 }
 
 /* Large */
@@ -191,7 +204,7 @@ body{
   text-align: center;
   margin: 50px auto;
   padding: 20px;
-  width: 90%;
+  width: 50%;
 }
 
 #profileImage{
@@ -204,25 +217,24 @@ body{
 }
 
 #profileEditButton{
-  background-color: rgba(70, 165, 255, 0.842);
   margin: 5px;
   height: 40px;
+  font-size: 13px;
+  font-family: 'Comfortaa', 'cursive';
+  background-color: rgba(74, 167, 255, 0.700);
 }
 
 #profileCompanyButton{
-  background-color: rgba(255, 166, 0, 0.842);
-  font-size: 10px;
+  font-size: 13px;
   height: 40px;
-}
-
-#saveButton{
-  background-color: rgba(70, 165, 255, 0.842);
+  font-family: 'Comfortaa', 'cursive';
+  background-color: rgb(74, 168, 255, 0.700);
 }
 
 #profileBody{
   margin: 50px auto;
   padding: 20px;
-  width: 90%;
+  width: 50%;
 }
 
 #innerBodyContainer{
@@ -231,7 +243,19 @@ body{
 }
 
 #text{
-  color: grey;
+  font-family: 'Comfortaa', 'cursive';
+}
+
+#addCardContainer{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+#addCard{
+  background-color: rgb(74, 168, 255, 0.700);
+  font-family: 'Comfortaa', 'cursive';
 }
 
 @media only screen and (max-width: 1000px) {
@@ -252,4 +276,13 @@ body{
     width: 100%;
     margin: auto;
   }
+}
+
+/* Company Page */
+
+#companyContainer{
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  text-align: center;
 }
