@@ -122,7 +122,7 @@ function Profile(props) {
 
   if (editing) {
     return (
-      <div>
+      <div id='profileContainer'>
         <Paper id='profileBody'>
           <div id='innerBodyContainer'>
             <Typography variant='h5' gutterBottom align='center'>Profile Information</Typography>
@@ -210,7 +210,7 @@ function Profile(props) {
     )
   } else {
     return (
-      <div>
+      <div id='profileContainer'>
         <Paper id='profileHeader'>
           <Grid container justify="center" alignItems="center">
             <Avatar alt="Profile Picture" src={user.image} className={classes.bigAvatar} />
@@ -222,7 +222,7 @@ function Profile(props) {
               <Button id='profileCompanyButton' size='small'>Company Dashboard</Button>
             </Link>
             :
-            <Button id='profileCompanyButton' onClick={() => updateCreateCompany(!createCompany)} size='small'>Create Company Page</Button>
+            <Button id='profileCompanyButton' onClick={() => updateCreateCompany(!createCompany)} size='small'>Create Company</Button>
           }
           {handleCreateCompany()}
         </Paper>

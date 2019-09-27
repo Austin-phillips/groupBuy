@@ -183,13 +183,13 @@ body{
 
   #loginButton{
     position: absolute;
-    right: 0px;
+    right: 25px;
     top: 25px;
   }
 
   #menuButton{
     position: absolute;
-    left: 0px;
+    left: 20px;
     top: 25px;
   }
 }
@@ -200,6 +200,13 @@ body{
 
 
 /* Profile Page */
+
+#profileContainer{
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
 #profileHeader{
   text-align: center;
   margin: 50px auto;
@@ -268,6 +275,17 @@ body{
     width: 60%;
     margin: auto;
   }
+  #profileHeader{
+    text-align: center;
+    margin: 50px auto;
+    padding: 20px;
+    width: 80%;
+  }
+  #profileBody{
+    margin: 50px auto;
+    padding: 20px;
+    width: 80%;
+  }
 }
 
 /* Small */
@@ -275,6 +293,17 @@ body{
  #innerBodyContainer{
     width: 100%;
     margin: auto;
+  }
+  #profileHeader{
+    text-align: center;
+    margin: 50px auto;
+    padding: 20px;
+    width: 100%;
+  }
+  #profileBody{
+    margin: 50px auto;
+    padding: 20px;
+    width: 100%;
   }
 }
 
